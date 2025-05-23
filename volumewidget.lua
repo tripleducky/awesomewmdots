@@ -7,10 +7,10 @@ local gears = require("gears")
 local refresh_rate = 1 -- seconds between volume updates
 local volume_step = 5 -- volume change percentage per scroll step
 local volume_icons = {
-    low = "🔈",
-    medium = "🔉",
-    high = "🔊",
-    muted = "🔇"
+    low = "󰕿",
+    medium = "󰖀",
+    high = "󰕾",
+    muted = "󰝟"
 }
 
 -- Create the widget

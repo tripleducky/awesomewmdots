@@ -683,6 +683,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Autorun programs
 
 awful.spawn.with_shell("pgrep nm-applet || nm-applet &")
+awful.spawn.with_shell("pgrep pipewire || pipewire &")
 
 awful.spawn.with_shell("xrandr --output HDMI-1-0 --primary --auto")
 

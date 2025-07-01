@@ -5,12 +5,12 @@ local gears = require("gears")
 
 -- Configuration
 local refresh_rate = 1 -- seconds between volume updates
-local volume_step = 5 -- volume change percentage per scroll step
+local volume_step = 5  -- volume change percentage per scroll step
 local volume_icons = {
-    low = "🔈",
-    medium = "🔉",
-    high = "🔊",
-    muted = "🔇"
+    low = "",
+    medium = "",
+    high = "",
+    muted = ""
 }
 
 -- Create the widget
@@ -66,10 +66,12 @@ end
 
 -- Function to set volume
 local function set_volume(level)
-    awful.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ " .. (level/100), false)
+    awful.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ " .. (level / 100), false)
     -- Force unmute when changing volume
     awful.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ 0", false)
-    gears.timer.start_new(0.1, function() get_volume(); return false end)
+    gears.timer.start_new(0.1, function()
+        get_volume(); return false
+    end)
 end
 
 local function set_volume_step(step)
@@ -86,7 +88,9 @@ end
 -- Function to toggle mute
 local function toggle_mute()
     awful.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", false)
-    gears.timer.start_new(0.1, function() get_volume(); return false end)
+    gears.timer.start_new(0.1, function()
+        get_volume(); return false
+    end)
 end
 
 -- Mouse enter/leave events
@@ -100,7 +104,7 @@ end)
 
 -- Click and scroll events
 volume_widget:connect_signal("button::press", function(_, _, _, button)
-    if button == 1 then -- Left click toggles mute
+    if button == 1 then                                     -- Left click toggles mute
         toggle_mute()
     elseif is_hovered and (button == 4 or button == 5) then -- Scroll
         awful.spawn.easy_async("wpctl get-volume @DEFAULT_AUDIO_SINK@", function(stdout)
@@ -110,7 +114,7 @@ volume_widget:connect_signal("button::press", function(_, _, _, button)
                 local new_vol
                 if button == 4 then -- Scroll up
                     new_vol = math.min(100, current_vol + volume_step)
-                else -- Scroll down
+                else                -- Scroll down
                     new_vol = math.max(0, current_vol - volume_step)
                 end
                 set_volume(new_vol)

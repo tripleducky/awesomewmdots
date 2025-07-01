@@ -101,7 +101,7 @@ theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/m
 local gears = require("gears")
 
 -- Assuming 's' is your screen object
-gears.wallpaper.maximized("/home/andre/Pictures/pexel-goop.jpg", nil)
+gears.wallpaper.maximized("/home/andre/Pictures/wallpaper/pexel-goop.jpg", nil)
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
